@@ -1,0 +1,20 @@
+
+/*class Solution
+{
+  public:
+    //Function to check if S is a subtree of tree T.
+    bool issame(Node* T,Node* S){
+        if(T==nullptr && S==nullptr)   return true;
+        if(T==nullptr || S==nullptr)    return false;
+        return(T->data==S->data and issame(T->left,S->left) and issame(T->right,S->right));
+    }
+    bool isSubTree(Node* T, Node* S) 
+    {
+        if(T==nullptr)
+            return false;
+        if(issame(T,S)) return true;
+        return(isSubTree(T->left,S) or isSubTree(T->right,S));
+        
+    }
+};
+

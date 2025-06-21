@@ -1,0 +1,439 @@
+What is JavaScript? How is it different from Java?
+JavaScript is a programming language primarily used for creating interactive effects within web browsers. It allows
+developers to add dynamic behavior, manipulate HTML and CSS, handle events, and much more, making websites interactive
+and responsive. JavaScript is executed on the client-side (in the browser), though it can also run on the server side
+using environments like Node.js.
+1. Nature and Usage:
+Java is a general-purpose, object-oriented programming language. It is widely used for building large-scale
+applications, mobile apps (via Android), server-side applications, etc.
+
+JavaScript is primarily used for web development to add interactivity to websites. It's mainly used on the client-side
+(in browsers), though it can also run on servers with Node.js.
+
+2. Syntax:
+Both languages have similar syntax in some ways, such as using curly braces {} to define blocks of code. However, they
+differ significantly in their structure and behavior.
+
+Java is more strict about how you define variables and objects (using classes, types, etc.), while JavaScript is more
+flexible and dynamically typed.
+
+3. Execution:
+Java code needs to be compiled into bytecode and run on a Java Virtual Machine (JVM), making it platform-independent.
+
+JavaScript is interpreted and usually executed directly by the browser, though there are environments like Node.js that
+allow JavaScript to be run server-side.
+
+4. Typing System:
+Java is a statically-typed language, meaning you must declare the data types of variables.
+
+JavaScript is dynamically-typed, meaning the type of a variable is determined at runtime, and you don't have to
+explicitly declare types.
+
+5. Multithreading:
+Java supports multithreading, meaning it can perform multiple tasks simultaneously (useful in server-side and
+application development).
+
+JavaScript is single-threaded but uses asynchronous operations and events (e.g., callbacks, promises) to manage multiple
+tasks without blocking the main thread.
+
+6. Platform:
+Java is commonly used for developing standalone applications (like desktop software), Android apps, and backend
+services.
+
+JavaScript is predominantly used for web development, especially for front-end tasks, though its use is expanding to the
+server-side with Node.js.
+
+In summary:
+Java is a robust, versatile language suitable for large-scale applications, with a focus on portability (through JVM).
+
+JavaScript is designed for web interactivity and runs primarily in browsers, enabling dynamic web pages.
+
+While both are powerful, they serve different purposes in the software development ecosystem!
+
+*******************************************************************************
+What are the different data types in JavaScript?
+primitive or non primitive
+
+Number Represents numbers (integer or floating point) let age = 25;
+String Represents a sequence of characters let name = "Alice";
+Boolean Represents true or false values let isActive = true;
+Undefined Represents a variable that hasn't been assigned a value let x;
+Null Represents the intentional absence of any value let data = null;
+Symbol Represents a unique and immutable value let sym = Symbol("id");
+BigInt Represents large integers let big = 12345678901234567890n;
+Object Represents a collection of key-value pairs let obj = { name: "Alice", age: 25 };
+Array Represents an ordered list of values let arr = [1, 2, 3];
+Function Represents a reusable block of code function sum(a, b) { return a + b; }
+*******************************************************************************
+What is the difference between var, let, and const?
+
+var: Function-scoped, can be redeclared and reassigned, hoisted with undefined.
+
+let: Block-scoped, can be reassigned, cannot be redeclared in the same scope, hoisted but in the "temporal dead zone."
+
+const: Block-scoped, cannot be reassigned, cannot be redeclared in the same scope, hoisted but in the "temporal dead
+zone."
+
+In modern JavaScript, it's recommended to use let and const over var because of their more predictable scoping and
+behavior. Use let when the variable needs to be reassigned, and const when the variable should not be reassigned.
+
+********************************************************************
+What is the difference between a function declaration and a function expression?
+
+example this is function declaration
+
+function sum(a,b){
+return a+b;
+}
+
+<!-- call the function  -->
+console.log(sum(3,6));
+
+
+example this is function expression
+
+let sum = function(a,b){
+return a+b;
+}
+<!-- call the function  -->
+console.log(sum(3,6));
+this is called anonymous function where no function name is available
+function(a,b){
+return a+b;
+}
+this is arrow function
+
+let sum = (a,b)=>{
+return a,b;
+}
+************************************************************
+
+What is a callback function?
+
+one function takes another function as an argunment
+<!-- example  -->
+
+function sum(a,b){
+console.log( a+b);
+}
+
+function add(a,b,sum){
+sum(a,b)
+}
+
+console.log(1,2,callbacks) dont call the function like this callbacks() this is the right methid to call the callbacks:
+callbacks
+*******************************************************
+
+How do you clone an object in JavaScript?
+<!-- object is dynacmic in nature  -->
+
+let obj={
+a:3,
+wt:90,
+ht:45
+}
+
+console.log(obj);
+i want to put color as a property
+**obj.color="Red"
+console.log(obj);
+
+
+<!-- cloning  -->
+
+let a={
+value:"anurag,
+}
+let b = a ; it is not cloning because there is only one obj (a) but there is two value reference the same a obj a , b
+
+right way of cloning
+1. Shallow cloning copies only the top-level properties. Nested objects still refer to the same memory.
+ex: using Object.assign()
+const original = { a: 1, b: 2 };
+const clone = Object.assign({}, original);
+
+
+2. second way of cloning is spread ...
+
+const original = { a: 1, b: 2 };
+const clone = { ...original };
+
+3. Using structuredClone() (Modern Browsers, Deep Clone)
+const original = { a: 1, b: { c: 2 } };
+const clone = structuredClone(original); // Deep copy
+**********************************************************************
+What is the difference between call(), apply(), and bind()?
+
+let student={
+name:"anurag",
+rollno:23,
+salary:function(){
+console.log(this.rollno);
+}
+}
+
+let teacher={
+name:"sita",
+id:123456,
+}
+
+student.salary.call(teacher); print : 123456
+
+
+
+function greet(greeting, punctuation) {
+console.log(greeting + ', ' + this.name + punctuation); // here you can use multiple argument but this is not right way
+so that we are using apply method
+line no 178
+}
+const person = { name: 'Alice' };
+greet.call(person, 'Hello', '!');
+
+
+<!-- like this 
+  -->
+functionName.apply(thisArg, [arg1, arg2, ...]); // using array list
+
+function greet(a,b){
+console.log(arguments) // this is the way to het how many arguments are passed
+}
+
+
+******************************************
+<!-- method ion javascript 
+       -->
+map method is used to create a new array by applying a function to each element of the original array. It does not
+modify the original array.
+example :
+
+
+let arra=[1,2,3,4,5]
+const double = arr.map(num=>map*2)
+console.log(double) // [2,4,6,8,10]
+console.log(arr) // [1,2,3,4,5] original array is not modified
+
+
+
+
+* filter method is used to create a new array containing elements that pass a certain condition. It also does not modify
+the original array.
+
+example :
+
+let arra=[1,2,3,4,5]
+const even = arr.filter(num=>num%2==0);
+console.log(even) // [2,4]
+console.log(arr) // [1,2,3,4,5] original array is not modified
+
+* reduce method is used to apply a function against an accumulator and each element in the array (from left to right) to
+reduce it to a single value. It can modify the original array if you choose to do so.
+
+example :
+
+let arra=[1,2,3,4,5]
+const sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log(sum) // 15
+
+find method is used to return the first element in the array that satisfies a provided testing function. It does not
+modify the original array.
+example :
+let arra=[1,2,3,4,5]
+const found = arr.find(num => num > 3);
+console.log(found) // 4
+console.log(arr) // [1,2,3,4,5] original array is not modified
+
+**********************************************************
+
+
+Event bubbling and event capturing are two phases of event propagation in the DOM (Document Object Model) when an event
+occurs.
+event bubbling is the default mode of event propagation in the DOM. When an event occurs on an element, it first runs
+the handlers on that element, then on its parent, and so on up to the root of the DOM tree. This means that the
+innermost element's event handler is executed first, and then the outer elements' handlers are executed
+in order.
+
+
+event capturing, also known as trickling, is the opposite of bubbling. In this phase, the event starts from the root of
+the DOM tree and propagates down to the target element. This means that the outermost element's event handler is
+executed
+first, and then the inner elements' handlers are executed in order until it reaches the target element.
+
+
+
+********************************************************
+what is IIFFE (Immediately Invoked Function Expression)?
+
+An IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined. It is a
+design pattern that helps to create a new scope and avoid polluting the global scope. IIFE is often used to encapsulate
+code and create private variables.
+The syntax for an IIFE is as follows:
+
+normal function or regular function syntax
+function greet(){
+console.log(:hello world!);
+}
+
+call the function
+greet(); // hello world!
+example: IIFE syntax
+(function() {
+console.log("hello world!");
+})();
+// or using arrow function syntax
+(() => {
+console.log("hello world!");
+})();
+ this function has no name beacause it is an anonymous function. no need to call thats why we are using () to call the function
+in this function we dont have need to call the function name because it is invoked immediately after it is defined.
+
+
+
+  ****************************************
+
+  --  fetch api 
+  
+
+  The Fetch API is a modern JavaScript API that allows you to make network requests to servers. It provides a more powerful and flexible feature set than the older XMLHttpRequest API. Fetch is promise-based, making it easier to work with asynchronous operations.
+  It is used to request resources from a server, such as JSON data, images, or other files.
+  The Fetch API is built into modern browsers and can be used in both client-side and server-side JavaScript (e.g., Node.js).
+
+
+   exaple :  normal function fectch the api data 
+
+  async function fetchData() {
+    try {
+      const response = await fetch('https://api.example.com/data');
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
+    }
+  }
+
+
+   ********************************************
+
+    promises in javascript
+    A Promise is an object that represents the eventual completion (or failure) of an asynchronous operation and its
+
+
+      example :
+        const myPromise = new Promise((resolve, reject) => {
+          const success = true; // Simulating success or failure
+          if (success) {
+            resolve("Operation was successful!");
+          } else {
+            reject("Operation failed.");
+          }
+        });
+
+        myPromise
+          .then((result) => {
+            console.log(result); // "Operation was successful!"
+          })
+          .catch((error) => {
+            console.error(error); // "Operation failed."
+          });
+    
+    
+    Promises have three states:
+    1. Pending: The initial state, neither fulfilled nor rejected.
+    2. Fulfilled: The operation completed successfully, and the promise has a value.
+    3. Rejected: The operation failed, and the promise has a reason for the failure (an error).
+
+     pending example:
+
+    const myPromise = new Promise((resolve, reject) => {
+      // Simulating an asynchronous operation
+      setTimeout(() => {
+        resolve("Operation was successful!");
+      }, 2000); // Resolves after 2 seconds
+    });
+
+    ****************************************************************
+    clouseres in javascript
+    A closure is a feature in JavaScript where an inner function has access to the outer function's variables even after
+    the outer function has returned. This allows the inner function to "close over" its environment, preserving the state of  
+    the outer function's variables.
+    Closures are often used to create private variables and functions, as well as to maintain state in asynchronous
+    operations.
+    They are a fundamental concept in JavaScript and are widely used in functional programming patterns.
+   
+    example:
+
+    function outerFunction() {
+      let outerVariable = "I am from the outer function!";
+      return function innerFunction() {
+        console.log(outerVariable); 
+        // Accessing outerVariable from the inner function //
+      };
+    }
+
+
+
+
+
+    ******************************************************
+        callback  function i javascript 
+
+    A callback function is a function that is passed as an argument to another function and is executed after some
+    operation has been completed. Callbacks are commonly used in asynchronous programming to handle events, such as when  
+    an API request is completed or when a user interacts with a web page.
+
+     function greet(name, callbacks){
+   console.log("hello"+name);
+     }
+
+      function sayhey(){
+        console.log("hey there")
+      }
+
+       greet("anurag",sayhey);
+
+        -- output   hello anurag hey there
+
+
+*************************************************************
+        optinal chaning in javascript
+        Optional chaining is a feature in JavaScript that allows you to safely access deeply nested properties of an object
+
+
+            const user={
+              name:"anurag",
+              address:{
+                city:"delhi",
+                state:"up",
+              }
+            }
+
+             console.log(user.address.city) // delhi
+              console.log(user.address.country) // undefined
+              console.log(user?.address?.country) // undefined
+
+
+               optional chaining is useful when you are not sure if a property exists in an object or if it is null or undefined.
+               It prevents runtime errors that would occur if you tried to access a property of an undefined or null value.
+
+
+               const user = {
+                sayHi: () => console.log("Hi!")
+              };
+              
+              user.sayHi?.(); // "Hi!"
+              user.sayBye?.(); // nothing happens, no error
+
+              const arr = [ { name: 'Bob' } ];
+              console.log(arr[0]?.name); // 'Bob'
+              console.log(arr[1]?.name); // undefined (no error)
+
+
+              ****************************************
+
+
+
+
+              

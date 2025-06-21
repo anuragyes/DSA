@@ -1,0 +1,51 @@
+
+//   there are following step 
+1   first node of pre node make root 
+2. search that node in inorder ,found that node is called mid (for unserstanding ) mid of the left side every node goes to left side of root and other side goes right side  
+
+
+
+
+
+
+class Solution {
+public:
+    // Function to find the index of the element in inorder vector
+    int findPosition(const vector<int>& inorder, int element) {
+        for (int i = 0; i < inorder.size(); i++) {
+            if (inorder[i] == element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // Recursive function to build the tree
+    TreeNode* solve(const vector<int>& preorder, const vector<int>& inorder, int& index, int start, int end) {
+        // Base cases
+        if (start > end)
+            return nullptr;
+        if (index >= preorder.size())
+            return nullptr;
+        
+        // Create the root node with the current element in preorder
+        int element = preorder[index++];
+        TreeNode* root = new TreeNode(element);
+        
+        // Find the index of the current element in inorder
+        int position = findPosition(inorder, element);
+
+        // Recursively build the left and right subtrees
+        root->left = solve(preorder, inorder, index, start, position - 1);
+        root->right = solve(preorder, inorder, index, position + 1, end);
+
+        return root;
+    }
+
+    // Function to build the tree from preorder and inorder traversals
+    TreeNode* buildTree(const vector<int>& preorder, const vector<int>& inorder) {
+        int indexPre = 0;
+        int n = inorder.size() - 1;
+        return solve(preorder, inorder, indexPre, 0, n);
+    }
+};

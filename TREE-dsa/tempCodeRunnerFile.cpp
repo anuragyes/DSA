@@ -1,0 +1,2 @@
+ // if (root == NULL)
+    //     return;

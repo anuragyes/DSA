@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    string str = "ehycu";
+    for (int i = 0; i < str.length(); i++)
+    {
+        char ch = str[i] - 'a';
+        // cout << ch << endl;
+    }
+    cout << 'a' - 2 << endl;
+    return 0;
+}
+
+/* string sort(string s){
+    // sort(str.begin(), str.end());
+    //  return str;
+
+
+
+
+     vector<int>alpha(26,0);
+
+    for(int i=0;i<s.size();i++)
+    {
+        alpha[s[i]-'a']++;
+    }
+    string ans;
+
+    for(int i=0;i<26;i++)
+    {
+        char c ='a'+ i;
+        while(alpha[i])
+        {
+            ans+=c;
+            alpha[i]--;
+        }
+    }
+
+    return ans;
+}*/
