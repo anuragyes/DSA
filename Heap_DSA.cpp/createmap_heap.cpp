@@ -24,9 +24,9 @@ public:
             return;
         }
         arr[size] = val; // insert the element in last
-        int index = size;
+        int index = size;  //index at last element where new element inserted 
         size++;
-        //  compare with thier parents
+        //  compare with thier parents  parent of inserted element is (arr[index]-1)/2  this is formula to find parent of any element in heap
 
         while (index > 0 && arr[(index - 1) / 2] < arr[index])
         {

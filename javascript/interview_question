@@ -54,7 +54,7 @@ While both are powerful, they serve different purposes in the software developme
 What are the different data types in JavaScript?
 primitive or non primitive
 
-Number Represents numbers (integer or floating point) let age = 25;
+Number Represents numbers (integer or floating point) let age = 25 or let 0.4;
 String Represents a sequence of characters let name = "Alice";
 Boolean Represents true or false values let isActive = true;
 Undefined Represents a variable that hasn't been assigned a value let x;
@@ -88,6 +88,9 @@ return a+b;
 
 <!-- call the function  -->
 console.log(sum(3,6));
+
+
+
 
 
 example this is function expression
@@ -231,6 +234,9 @@ reduce it to a single value. It can modify the original array if you choose to d
 
 example :
 
+
+   let sum = array.reduce((a,b)=>a+b,0);
+
 let arra=[1,2,3,4,5]
 const sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 console.log(sum) // 15
@@ -273,6 +279,10 @@ normal function or regular function syntax
 function greet(){
 console.log(:hello world!);
 }
+
+
+    
+
 
 call the function
 greet(); // hello world!

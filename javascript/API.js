@@ -1,8 +1,8 @@
 let url = "http://universities.hipolabs.com/search?name=";
-// select the button to see the event
-let btn = document.querySelector("button");
+// select the button to see the event           
+let btn = document.querySelector("button");              
 
-//  lets craete addEventListener
+//  lets create  addEventListener
 btn.addEventListener("click", async () => {
   let country = document.querySelector("input").value;
   // console.log(country);

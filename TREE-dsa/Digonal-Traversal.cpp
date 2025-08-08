@@ -18,11 +18,7 @@ void findDiagonal(Node *root, int position, vector<vector<int>> &ans)
         return;
     }
 
-    // Ensure the vector has enough capacity to store the diagonal elements
-    // if (ans.size() <= position)
-    // {
-    //     ans.resize(position + 1);
-    // }
+   
 
     ans[position].push_back(root->data);
     findDiagonal(root->left, position + 1, ans);
