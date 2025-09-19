@@ -42,6 +42,40 @@ node *lowestCommonAncestor(node *root, node *p, node *q)
     }
 }
 
+//   this is the second method   extra space is used
+
+bool solve(node* root, vector<int>&ans, int a )
+{
+
+    if (root == NULL)
+        return;
+
+         if(root->data==a){
+            return true;
+         }
+
+    ans.push_back(root->data);
+
+   if(solve(root->left, ans,a) ||
+    solve(root->right, ans,a))  return true;
+
+    ans.pop_back();
+     return  false;
+}
+
+node *LCA(node *a, node *b)
+{
+
+    if (!a || !b)
+        return nullptr;
+
+    vector<int> first;
+    vector<int> second;
+
+    if (!solve(a, first) || !solve(b, second))
+        return -1;
+}
+
 int main()
 {
     node *root = new node(4);

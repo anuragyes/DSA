@@ -9,17 +9,18 @@ public:
     // from the source vertex S.
     vector<int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
-        vector<int> dist(V, INT_MAX);  // store the distance 
+        vector<int> dist(V, INT_MAX); // store the distance
         dist[S] = 0;
         vector<bool> visited(V, 0);
         // priority queue or you can call  it min heap
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;  // min heap 
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // min heap
         pq.push({0, S});
 
         while (!pq.empty())
         {
-            int node = pq.top().second;      //   node 
-        
+            int dist = pq.top().first;  //   distance
+            int node = pq.top().second; //   node
+
             pq.pop();
 
             if (visited[node])

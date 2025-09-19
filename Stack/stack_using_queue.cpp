@@ -1,59 +1,49 @@
 #include <bits/stdc++.h>
-#include <stack>
 using namespace std;
-#include <queue>
-class Stack 
-{
 
-    int size;
-    queue<int> q1;
-    queue<int> q2;
-
+class Stack {
 public:
-    Stack(int n)
-    {
+    queue<int> q1, q2;
+    int size;
+
+    Stack() {
         size = 0;
     }
 
-    void push(int val)
-    {
-        q2.push(val);
-        // push all the element  from q2 to q1
-        size++;
-        while (!q1.empty())
-        {
-            int top = q1.front();
-            q2.push(top);
-            q1.pop();
-        }
-        queue<int> temp = q1;
-        q1 = q2;
-        q2 = temp;
-        // swap(q1,q2);
-    }
-
-    void pop()
-    {
-        q1.pop();
-        size--;
-    }
-
-    int peek()
-    {
-        return q1.front();
-    }
-    int sizeOFStack()
-    {
+    int getSize() {
         return size;
     }
-};
 
-int main()
-{
-    Stack  s;
-    st.push(3);
-    st.push(13);
-    st.push(32);
-    st.push(33);
-    return 0;
-}
+    bool isEmpty() {
+        return size == 0;
+    }
+
+    void push(int element) {
+        // Push element into q2
+        q2.push(element);
+
+        // Move all elements from q1 to q2
+        while (!q1.empty()) {
+            q2.push(q1.front());
+            q1.pop();
+        }
+
+        // Swap q1 and q2
+        swap(q1, q2);
+
+        size++;
+    }
+
+    int pop() {
+        if (isEmpty()) return -1; // Stack underflow
+        int topElement = q1.front();
+        q1.pop();
+        size--;
+        return topElement;
+    }
+
+    int top() {
+        if (isEmpty()) return -1; // Stack underflow
+        return q1.front();
+    }
+};
