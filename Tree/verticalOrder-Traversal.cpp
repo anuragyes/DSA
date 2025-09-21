@@ -42,6 +42,7 @@ vector<int> verticalOrder(node *root)
     vector<vector<int>> positive(right + 1);     // for positions >= 0
     vector<vector<int>> negative(abs(left) + 1); // for positions < 0
 
+    
     queue<node *> q;
     queue<int> index;
     q.push(root);

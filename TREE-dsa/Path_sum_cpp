@@ -1,0 +1,32 @@
+int solve(BinaryTreeNode<int> *node, int target, int sum , unordered_map<long,int>&presum ){
+     
+
+       if(node==NULL)  return 0;
+        int count =0;
+        sum +=node->data;
+       
+        if(presum.count(sum-target)){
+            count += presum[sum-target];
+        }
+         presum[target-sum];
+
+         count+=solve(node->left,target, sum , presum);
+         count+=solve(node->right,target,sum,presum);
+      presum[sum]--;
+    return count;
+
+           
+ }
+int findSumPaths(BinaryTreeNode<int> *root, int target) {
+	//   step first 
+      unordered_map<long,int>presum;
+    //    base case if   single node value  equal to target value 
+      presum[0]=1;
+         return solve(root, target , 0, presum);
+        
+}
+
+
+
+//   this question is different from find the total path sum equal to root to leaf 
+// thsi question if to find the path sum equal to target not a mandatory to take path root to leaf 
