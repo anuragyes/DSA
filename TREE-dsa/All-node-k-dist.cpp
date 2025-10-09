@@ -1,37 +1,50 @@
 // All Nodes Distance K in Binary Tree
-class Solution {
+class Solution
+{
 public:
     vector<int> result;
 
-    int dfs(TreeNode* node, TreeNode* target, int k) {
-        if (!node) return -1;
+    int dfs(TreeNode *node, TreeNode *target, int k)
+    {
+        if (!node)
+            return -1;
 
         // If this node is the target
-        if (node == target) {
+        if (node == target)
+        {
             subtree_add(node, 0, k);
             return 1;
         }
 
         int left = dfs(node->left, target, k);
-        if (left != -1) {
-            if (left == k) result.push_back(node->val);
-            else subtree_add(node->right, left + 1, k);
+        if (left != -1)
+        {
+            if (left == k)
+                result.push_back(node->val);
+            else
+                subtree_add(node->right, left + 1, k);
             return left + 1;
         }
 
         int right = dfs(node->right, target, k);
-        if (right != -1) {
-            if (right == k) result.push_back(node->val);
-            else subtree_add(node->left, right + 1, k);
+        if (right != -1)
+        {
+            if (right == k)
+                result.push_back(node->val);
+            else
+                subtree_add(node->left, right + 1, k);
             return right + 1;
         }
 
         return -1;
     }
 
-    void subtree_add(TreeNode* node, int dist, int k) {
-        if (!node) return;
-        if (dist == k) {
+    void subtree_add(TreeNode *node, int dist, int k)
+    {
+        if (!node)
+            return;
+        if (dist == k)
+        {
             result.push_back(node->val);
             return;
         }
@@ -39,13 +52,12 @@ public:
         subtree_add(node->right, dist + 1, k);
     }
 
-    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+    vector<int> distanceK(TreeNode *root, TreeNode *target, int k)
+    {
         dfs(root, target, k);
         return result;
     }
 };
-
-
 
 // class Solution {
 // public:
@@ -82,7 +94,7 @@ public:
 //                 ans.push_back(node);
 //             }
 
-//             if (dist > k) break;    // dont go further 
+//             if (dist > k) break;    // dont go further
 
 //             for (int neighbor : maap[node]) {
 //                 if (!visited[neighbor]) {

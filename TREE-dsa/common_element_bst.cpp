@@ -79,7 +79,6 @@ vector<int> findCommon(TreeNode *root1, TreeNode *root2)
         st2.push(root2);
         root2 = root2->left;
     }
-
     while (!st1.empty() && !st2.empty())
     {
         TreeNode *top1 = st1.top();
@@ -103,7 +102,7 @@ vector<int> findCommon(TreeNode *root1, TreeNode *root2)
             while (root2)
             {
                 st2.push(root2);
-                root2 = root2->left;
+               root2 = root2->left;
             }
         }
         else if (top1->data < top2->data)

@@ -27,6 +27,8 @@ void lefttraversal(node *root, vector<int> &ans)
 { // base case
     if (root == NULL)
         return;
+
+        //   leaf node don't consider 
     if (root->left == NULL && root->right == NULL)
     {
         return;
@@ -63,6 +65,7 @@ void righttraversal(node *root, vector<int> &ans)
 
     if (root == NULL)
         return;
+        //  leaf node   dont consider
     if (root->left == NULL && root->right == NULL)
         return;
 

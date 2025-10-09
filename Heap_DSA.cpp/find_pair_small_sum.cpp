@@ -1,4 +1,5 @@
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
+using namespace std ;
  using node = pair<int,pair<int,int>>;
 vector<vector<int>> findPairs (int n, int m, vector<int> &arr1, vector<int> &arr2, int k)
 {

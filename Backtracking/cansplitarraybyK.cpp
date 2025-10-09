@@ -19,7 +19,7 @@ bool canPartition(int index, vector<int> &arr, vector<int> &subsetSum, int targe
 
             if (canPartition(index + 1, arr, subsetSum, target, K))
                 return true;
-
+            //    backtrack 
             subsetSum[i] -= arr[index];
         }
 
@@ -77,7 +77,7 @@ bool splitArray(vector<int> &arr, int K) {
 
      int totalSum = accumulate(arr.begin(),arr.end(),0);
 
-    //    avoid to duplicate thats why we are useing bool vector 
+    //    avoid to duplicate thats why we are useing bool vector
      vector<bool>used(arr.size(),false);
     //    using backtracking
      if(totalSum%K!=0)  return false;
