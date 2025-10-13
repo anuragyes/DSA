@@ -5,7 +5,7 @@ using namespace std;
         if (cur == NULL) {
             return NULL;
         }
-        //  base case whwn we have only one node
+        //  base case whwn we have only one node  :  case first
         if (cur->val == key && !cur->left && !cur->right) {
             return NULL;
         } else if (cur->val == key && cur->left && !cur->right) {
@@ -29,3 +29,51 @@ using namespace std;
         return traversal(root, key);
     }
     */
+
+node *inorderSuccesor(node *root)
+{
+    node *current = root;
+
+    while (current && current->left != NULL)
+    {
+        current = current->left;
+    }
+    return current;
+}
+
+node *deletenode(node *root, int key)
+{
+
+    //    search key for deletetion
+    if (key < root->data)
+    {
+        root->left = deletenode(root->left, key);
+    }
+    else if (key > root->data)
+    {
+        root->right = deletenode(root->right, key);
+    }
+    else
+    {
+        //  finally we are at key point
+        //  case 1
+        if (root->left == NULL)
+        {
+            node *temp = root->right;
+            free(root);
+            return temp;
+        }
+        //  case 2
+        else if (root->right == NULL)
+        {
+            node *temp = root->left;
+            free(root);
+            return temp;
+        }
+        //    case third
+        node *temp = inorderSuccesor(root->right);
+        root->data = temp->data;
+        root->right = deletenode(root->right, temp->data);
+    }
+    return root;
+}
