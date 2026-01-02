@@ -1,0 +1,94 @@
+// class Solution {
+// public:
+// //  thisis my intuation 
+//     // map to store: node value -> parent value
+//     map<int, int> parentMap;   not using vectore because unique value  in question
+
+//     // Step 1: check if both nodes are on same level
+//     bool checkSameLevel(TreeNode* root, int x, int y) {
+//         if (!root) return false;
+
+//         queue<TreeNode*> q;
+//         q.push(root);
+
+//         while (!q.empty()) {
+//             int n = q.size();
+//             bool foundX = false, foundY = false;
+
+//             while (n--) {
+//                 TreeNode* node = q.front();
+//                 q.pop();
+
+//                 if (node->val == x) foundX = true;
+//                 if (node->val == y) foundY = true;
+
+//                 if (node->left) {
+//                     parentMap[node->left->val] = node->val;
+//                     q.push(node->left);
+//                 }
+
+//                 if (node->right) {
+//                     parentMap[node->right->val] = node->val;
+//                     q.push(node->right);
+//                 }
+//             }
+
+//             // after completing ONE level
+//             if (foundX && foundY) return true;
+//             if (foundX || foundY) return false;
+//         }
+//         return false;
+//     }
+
+//     bool isCousins(TreeNode* root, int x, int y) {
+//         // Step 1: same level check
+//         bool sameLevel = checkSameLevel(root, x, y);
+//         if (!sameLevel) return false;
+
+//         // Step 2: check parents using map
+//         return parentMap[x] != parentMap[y];
+//     }
+// };
+//   this is chat gpt 
+class Solution {
+public:
+    bool isCousins(TreeNode* root, int x, int y) {
+        if (!root) return false;
+
+        queue<pair<TreeNode*, TreeNode*>> q;
+        q.push({root, NULL});
+
+        while (!q.empty()) {
+            int n = q.size();
+            TreeNode* parentX = NULL;
+            TreeNode* parentY = NULL;
+
+            // same level traversal
+            while (n--) {
+                auto temp = q.front();
+                q.pop();
+
+                TreeNode* node = temp.first;
+                TreeNode* parent = temp.second;
+
+                if (node->val == x) parentX = parent;
+                if (node->val == y) parentY = parent;
+
+                if (node->left)
+                    q.push({node->left, node});
+
+                if (node->right)
+                    q.push({node->right, node});
+            }
+
+            // after finishing ONE level
+            if (parentX && parentY)
+                return parentX != parentY;
+
+            if (parentX || parentY)
+                return false;
+        }
+        return false;
+    }
+};
+
