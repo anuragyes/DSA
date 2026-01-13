@@ -1,0 +1,21 @@
+1 What is your recent project? Walk me through the architecture of the project, your role, and responsibilities.
+2 What are the best practices you are aware of as part of React?
+3 Given some code, how can you optimize this code?
+4 How is authentication happening in your current application?
+Is this the right way to store data in cookies?
+5 What information is there in the JWT token?
+6 Assume the backend has a REST API and returns data. How will you design the communication? How can I make a call to the API from my UI application?
+7 What is the use of the Next.js framework?
+8 Let’s say we are trying to design using BFF. In that case, I want the response time to be less than 10 subseconds for authenticated pages, especially for the first time. How do we achieve this?
+9 What kind of services should we go for — SSR or CSR?
+10 What are the practical challenges you faced with respect to state management?
+11 Why is Redux overused?
+12 What is the use of Express?
+13 Have you used GenAI tools to improve productivity?
+14 Code question – employee (logic / implementation).
+15 Code question – based on requirements (logic / implementation).
+16 Do you have experience with MongoDB? How have you worked with MongoDB?
+17 Difference between PUT and POST?
+18 What are the best practices for TypeScript?
+19 How do you take care of error handling?
+20 Have you used unknown type? Difference between unknown and any? 
