@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int pathLength = 0;
+    void dfs(TreeNode* node, bool goLeft, int steps) {
+        if (node == nullptr) {
+            return;
+        }
+        pathLength = max(pathLength, steps);
+        if (goLeft) {
+            dfs(node->left, false, steps + 1); // if we move right so add 1
+            dfs(node->right, true, 1); // if right not present means we have to
+                                       // go left so we satrt gain from 1
+        } else {
+            dfs(node->left, false, 1);
+            dfs(node->right, true, steps + 1);
+        }
+    }
+
+    void solve(TreeNode* root, int left, int right) {
+        if (root == NULL)
+            return;
+        pathLength = max(pathLength, max(left, right));
+        solve(root->left, right + 1, 0);
+        solve(root->right, 0, left + 1);
+    }
+
+    int longestZigZag(TreeNode* root) {
+        //  first methiod
+        // dfs(root, true, 0);
+        // return pathLength;
+        //    second method
+        solve(root, 0, 0); // root , left ,right
+        return pathLength;
+    }
+};
