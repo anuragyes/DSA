@@ -1,0 +1,114 @@
+CREATE DATABASE collage;
+USE collage ;
+
+CREATE TABLE student(
+id INT PRIMARY KEY,
+name VARCHAR(50),
+age INT NOT NULL
+);
+INSERT INTO student VALUES (1 , "anurag pandey" , 16);
+INSERT INTO student VALUES (2 , "sachin pandey" , 86);
+INSERT INTO student VALUES (3 , "rohit pandey" , 36);
+INSERT INTO student (id,age) VALUES (8 , 39);
+INSERT INTO student  (name , age , id ) VALUES ("helo" , 39 , 90); -- order of sending data and  their values should be same 
+INSERT INTO student   VALUES (30,"anura",26);  -- smaller version if we know the order of schemas
+ SELECT * FROM student;
+ 
+ CREATE DATABASE IF NOT EXISTS  collage;    
+ 
+ SHOW TABLES;    -- show all the tables present 
+ SHOW DATABASES;    -- show all the databse present 
+ 
+ 
+ 
+ 
+ -- pratices questions  
+ -- craete database called office  and insert data into member table 
+CREATE DATABASE office; -- databse created 
+USE office;
+CREATE TABLE members(
+ id INT PRIMARY KEY,
+ name VARCHAR(10),
+ price INT NOT NULL
+);
+INSERT INTO members VALUES(1,"admin",25000);
+INSERT INTO members VALUES(2,"bob",2000);
+INSERT INTO members VALUES(3,"admin",5000);
+INSERT INTO members VALUES(4,"adn",25000);
+INSERT INTO members VALUES(5,"bb",2000);
+INSERT INTO members VALUES(6,"amin",5000);
+INSERT INTO members VALUES(7,"min",25000);
+INSERT INTO members VALUES(8,"b",2000);
+INSERT INTO members VALUES(9,"admin",5000);
+ SHOW TABLES ;
+ SELECT * FROM members;
+ 
+ 
+ 
+ --   keys primary key and foreign key 
+ -- primary key always unique and not null user can give any  data to primary ki like id rollnumber like this
+ --  constrainst : means set of rules like int NOT NULL , int  UNIQUE , primary key also act like a constraints like this
+ -- foreign key constraints
+ -- CREATE TABLE temp(cust_id int,
+ -- FOREIGN KEY (cust_id) reference customer(id)   --customer is other table  
+ -- ) 
+ -- Default constraints like  salary INT DEFAULT 20000; 
+ CREATE TABLE temp(
+  id INT ,
+ salary INT  DEFAULT 20000
+ );
+
+INSERT INTO   temp  VALUES (105);
+  SELECT * FROM temp;
+  SHOW DATABASES;
+  
+  
+  --  lest begin for level up in sql 
+  CREATE DATABASE SAMPLE;
+  USE sample;
+  
+CREATE TABLE student(
+rollnumber INT PRIMARY KEY ,
+name VARCHAR(50),
+marks INT NOT NULL,
+grade VARCHAR(10),
+city VARCHAR(10)
+);
+
+
+INSERT INTO STUDENT (rollnumber,name,marks,grade,city) VALUES 
+(101 ,"anu",200,"A","satna"),
+(102 ,"pandey",200,"C","stna"),
+(103 ,"dev",200,"A","sa"),
+(104 ,"ram",200,"D","sat");
+SELECT * FROM STUDENT;  --   select all 
+SELECT grade FROM STUDENT; --  select only values to get only that value  
+SELECT DISTINCT city FROM STUDENT;    -- to get unique city value using distinct 
+
+
+
+
+  -- lest discuss about other methods  CLAUSE  : WHERE
+  
+SELECT * FROM STUDENT WHERE marks > 205;  
+SELECT * FROM STUDENT WHERE city = "sa"; 
+
+--  we use so many operators with WHERE like Arithmetic operators ,compariosn operort ,logical ,bitwise;
+-- logcal operator means  AND , OR ,NOT , IN, BETWEEN ,ALL , LIKE ,ANY
+
+SELECT * FROM STUDENT WHERE marks+5 = 205; 
+
+
+-- operators 
+SELECT * FROM STUDENT WHERE MARKS>100 OR CITY = "sa"; 
+SELECT * FROM STUDENT WHERE   marks BETWEEN 100 AND 200;   -- range in the list 
+SELECT * FROM STUDENT WHERE city IN ("sa" , "sat"); --  match any val in the list  
+SELECT * FROM STUDENT WHERE city  NOT IN ("sa" , "sat"); -- to neglate these in the lsit  
+SELECT * FROM STUDENT WHERE marks >190 LIMIT 2;
+
+-- ORDER BY CLAUSE means accending order or desending order -- 
+SELECT * FROM STUDENT ORDER BY city;  -- ydefault its gives us acending order 
+SELECT * FROM STUDENT ORDER BY city ASC;    -- acending order 
+SELECT * FROM STUDENT ORDER BY city DESC ;    -- dcending order -- 
+
+  
