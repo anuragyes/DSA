@@ -1,0 +1,80 @@
+//You are given a 2D array mat[][], of size n*m. Your task is to find the minimum possible path cost from the top-left cell (0, 0) to the bottom-right cell (n-1, m-1) by moving up, down, left, or right between adjacent cells.
+
+Note: The cost of a path is defined as the maximum absolute difference between the values of any two consecutive cells along that path.
+
+
+class Solution {
+  public:
+    int n;
+    int m;
+    
+    bool valid(int i, int j) {
+        return i >= 0 && j >= 0 && i < n && j < m;
+    }
+    
+    int minCostPath(vector<vector<int>>& mat) {
+        
+        n = mat.size();
+        m = mat[0].size();
+        
+        vector<vector<int>> mincost(n, vector<int>(m, INT_MAX));
+        
+        // min heap -> {cost, {row, col}}
+        priority_queue<
+            pair<int, pair<int,int>>,
+            vector<pair<int, pair<int,int>>>,
+            greater<pair<int, pair<int,int>>>
+        > q;
+        
+        mincost[0][0] = 0;
+        q.push({0, {0, 0}});
+        
+        while (!q.empty()) {
+            int node = q.top().first;
+            int i = q.top().second.first;
+            int j = q.top().second.second;
+            q.pop();
+            
+            if (i == n - 1 && j == m - 1)
+                return node;
+            
+            // up
+            if (valid(i - 1, j)) {
+                int nextnode = max(node, abs(mat[i][j] - mat[i - 1][j]));
+                if (nextnode < mincost[i - 1][j]) {
+                    mincost[i - 1][j] = nextnode;
+                    q.push({nextnode, {i - 1, j}});
+                }
+            }
+            
+            // down
+            if (valid(i + 1, j)) {
+                int nextnode = max(node, abs(mat[i][j] - mat[i + 1][j]));
+                if (nextnode < mincost[i + 1][j]) {
+                    mincost[i + 1][j] = nextnode;
+                    q.push({nextnode, {i + 1, j}});
+                }
+            }
+            
+            // left
+            if (valid(i, j - 1)) {
+                int nextnode = max(node, abs(mat[i][j] - mat[i][j - 1]));
+                if (nextnode < mincost[i][j - 1]) {
+                    mincost[i][j - 1] = nextnode;
+                    q.push({nextnode, {i, j - 1}});
+                }
+            }
+            
+            // right
+            if (valid(i, j + 1)) {
+                int nextnode = max(node, abs(mat[i][j] - mat[i][j + 1]));
+                if (nextnode < mincost[i][j + 1]) {
+                    mincost[i][j + 1] = nextnode;
+                    q.push({nextnode, {i, j + 1}});
+                }
+            }
+        }
+        
+        return 0;
+    }
+};
