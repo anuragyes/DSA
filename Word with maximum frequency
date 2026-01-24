@@ -1,0 +1,50 @@
+You are given a string s that is made up of words separated by spaces. Your task is to find the word with the highest frequency, i.e. it appears the most times in the sentence. If multiple words have maximum frequency, then print the word that occurs first in the sentence.
+
+Examples:
+
+Input: s = "the devil in the sky"
+Output: "the 2"
+Explanation: The frequency of "the" is 2, so we return "the" and its frequency "2" i.e., "the 2" 
+Input: s = "this is not right"
+Output: "this 1"
+Explanation: Every word has the frequency of "1", so we return "this 1" as this occurs first in the sentence. 
+
+
+class Solution {
+public:
+    string maximumFrequency(string& s) {
+
+        unordered_map<string, int> freq;
+        unordered_map<string, int> firstPos;
+
+        string word;
+        stringstream ss(s);
+        int idx = 0;
+
+        // Step 1: count frequency & first occurrence
+        while (ss >> word) {
+            freq[word]++;
+            
+            //   there is no need to add workd if alredy added because we stored first occurence 
+            if (firstPos.find(word) == firstPos.end()) {
+                firstPos[word] = idx;
+            }
+            idx++;
+        }
+
+        // Step 2: max heap
+        // {frequency, {-firstIndex, word}}
+        priority_queue<pair<int, pair<int, string>>> pq;
+
+        for (auto &it : freq) {
+            pq.push({it.second, {-firstPos[it.first], it.first}});
+        }
+
+        // Step 3: get top element
+        auto top = pq.top();
+
+        // Step 4: build result string
+        string result = top.second.second + " " + to_string(top.first);
+        return result;
+    }
+};
