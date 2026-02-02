@@ -1,0 +1,62 @@
+class Solution {
+public:
+    int numOfSubarrays(vector<int>& arr, int k, int threshold) {
+         int count = 0;
+        int currentSum = 0;
+        unordered_map<int, int> mp;
+
+        // first window
+        for (int i = 0; i < k; i++) {
+            currentSum += arr[i];
+            mp[arr[i]]++;
+        }
+
+        if (currentSum / k >= threshold)
+            count++;
+
+        int left = 0;
+
+        for (int right = k; right < arr.size(); right++) {
+
+            // remove left element
+            currentSum -= arr[left];
+            mp[arr[left]]--;
+            if (mp[arr[left]] == 0)
+                mp.erase(arr[left]);
+            left++;
+
+            // add right element
+            currentSum += arr[right];
+            mp[arr[right]]++;
+
+            // check average
+            if (currentSum / k >= threshold)
+                count++;
+        }
+
+        return count;
+        // int count = 0;
+        // int currentsum = 0;
+
+        // // first window
+        // for (int i = 0; i < k; i++) {
+        //     currentsum += arr[i];
+        // }
+
+        // if (currentsum / k >= threshold)
+        //     count++;
+
+        // int left = 0;
+
+        // for (int i = k; i < arr.size(); i++) {
+        //     currentsum -= arr[left];   // remove left
+        //     currentsum += arr[i];      // add right
+        //     left++;
+
+        //     if (currentsum / k >= threshold)
+        //         count++;
+        // }
+
+        // return count;
+    }
+};
