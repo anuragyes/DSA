@@ -1,0 +1,50 @@
+class Solution {
+  public:
+    int priority(char ch) {
+        if (ch == '+' || ch == '-') return 1;
+        if (ch == '*' || ch == '/') return 2;
+        if (ch == '^') return 3;
+        return -1;
+    }
+
+    string infixToPostfix(string& s) {
+        stack<char> st;
+        string res = "";
+
+        for (char c : s) {
+            // Operand
+            if (isalnum(c)) {
+                res += c;
+            }
+            // Opening bracket
+            else if (c == '(') {
+                st.push(c);
+            }
+            // Closing bracket
+            else if (c == ')') {
+                while (!st.empty() && st.top() != '(') {
+                    res += st.top();
+                    st.pop();
+                }
+                st.pop(); // remove '('
+            }
+            // Operator
+            else {
+                while (!st.empty() &&
+                      (priority(c) < priority(st.top()) ||
+                      (priority(c) == priority(st.top()) && c != '^'))) {
+                    res += st.top();
+                    st.pop();
+                }
+                st.push(c);
+            }
+        }
+
+        while (!st.empty()) {
+            res += st.top();
+            st.pop();
+        }
+
+        return res;
+    }
+};
