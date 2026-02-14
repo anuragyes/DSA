@@ -1,0 +1,39 @@
+The Painter's Partition Problem-II
+class Solution {
+public:
+  
+    bool solve(vector<int>& arr, int k, int timer) {
+        int painter = 1;
+        int currentsum = 0;
+
+        for(int i = 0; i < arr.size(); i++) {
+            if(currentsum + arr[i] <= timer) {
+                currentsum += arr[i];
+            } else {
+                painter++;
+                currentsum = arr[i];
+
+                if(painter > k) return false;  // FIXED
+            }
+        }
+        return true;
+    }
+
+    int minTime(vector<int>& arr, int k) {
+        long long low = *max_element(arr.begin(), arr.end());
+        long long high = accumulate(arr.begin(), arr.end(), 0LL);
+        long long ans = high;
+
+        while(low <= high) {
+            long long mid = low + (high - low) / 2;
+
+            if(solve(arr, k, mid)) {
+                ans = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return ans;
+    }
+};
